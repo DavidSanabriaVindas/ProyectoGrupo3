@@ -20,9 +20,9 @@ public class NavegacionController {
         return "index"; // Página de inicio
     }
     
-    @GetMapping("/Reservas")
+    @GetMapping("/Habitaciones")
     public String mostrarReservas() {
-        return "Reservas";
+        return "Habitaciones";
     }
     
     @GetMapping("/Servicios")
@@ -38,5 +38,17 @@ public class NavegacionController {
     @GetMapping("/Actividades")
     public String mostrarActividades() {
         return "Actividades";
+    }
+    @GetMapping("/ActividadAcuatica")
+    public String mostrarActividadAcuatica() {
+        return "ActividadAcuatica";
+    }
+    @GetMapping("/Actividades_AireLibre")
+    public String mostrarActividadesAireLibre() {
+        return "Actividades_AireLibre";
+    }
+    @GetMapping("/Actividad_Entretenimientos")
+    public String mostrarActividadEntretenimientos() {
+        return "Actividad_Entretenimientos";
     }
 }
