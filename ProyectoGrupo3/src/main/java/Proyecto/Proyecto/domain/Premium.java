@@ -2,7 +2,6 @@ package Proyecto.Proyecto.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import lombok.Data;
 
 @Data

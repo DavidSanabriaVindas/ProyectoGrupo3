@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="suite")
+@Table(name="habitacion_suite")
 
 public class Suite implements Serializable {
     
