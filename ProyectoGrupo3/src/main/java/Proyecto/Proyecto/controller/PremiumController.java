@@ -32,20 +32,18 @@ public class PremiumController {
     }
     
     @PostMapping("/guardar")
-    public String premiumGuardar(Premium premium,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {        
-
+    public String premiumGuardar(Premium premium) {        
         premiumService.save(premium);
         return "redirect:/habitacion_premium/listado";
     }
 
-    @GetMapping("/eliminar/{idPremium}")
+    @GetMapping("/eliminar/{id}")
     public String premiumEliminar(Premium premium) {
         premiumService.delete(premium);
         return "redirect:/habitacion_premium/listado";
     }
 
-    @GetMapping("/modificar/{idPremium}")
+    @GetMapping("/modificar/{id}")
     public String premiumModificar(Premium premium, Model model) {
         premium = premiumService.getPremium(premium);
         model.addAttribute("habitacion_premium", premium);
@@ -62,7 +60,3 @@ public class PremiumController {
 
 
 
-
-public class PremiumController {
-
-}

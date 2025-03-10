@@ -16,9 +16,9 @@ public class PremiumServiceImpl implements PremiumService {
 
     @Override
     @Transactional(readOnly=true)
-    public List<Premium> getPremium(boolean activos) {
+    public List<Premium> getPremium(boolean activo) {
         var lista=premiumDao.findAll();
-        if (activos) {
+        if (activo) {
            lista.removeIf(e -> !e.isActivo());
         }
         return lista;
@@ -27,7 +27,7 @@ public class PremiumServiceImpl implements PremiumService {
     @Override
     @Transactional(readOnly = true)
     public Premium getPremium(Premium premium) {
-        return premiumDao.findById(premium.getIdPremium()).orElse(null);
+        return premiumDao.findById(premium.getId()).orElse(null);
     }
 
     @Override

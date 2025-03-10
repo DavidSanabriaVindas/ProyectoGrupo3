@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface PremiumService {
     
-    public List<Premium> getPremium(boolean activos);
+    public List<Premium> getPremium(boolean activo);
     
     public Premium getPremium(Premium premium);
     

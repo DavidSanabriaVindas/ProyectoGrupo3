@@ -30,13 +30,8 @@ public class Estandar implements Serializable{
     public Estandar() {
     }
 
-    public Estandar(Long id, String nombre, String apellido, int cedula, int telefono, String correo, boolean activo) {
-        this.id = id;
+    public Estandar(String nombre,boolean activo) {
         this.nombre = nombre;
-        this.apellido = apellido;
-        this.cedula = cedula;
-        this.telefono = telefono;
-        this.correo = correo;
         this.activo = activo;
     }
     

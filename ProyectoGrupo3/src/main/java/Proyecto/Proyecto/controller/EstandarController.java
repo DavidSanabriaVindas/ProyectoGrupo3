@@ -24,30 +24,30 @@ public class EstandarController {
         var estandares = estandarService.getEstandar(false);
         model.addAttribute("estandares", estandares);
         model.addAttribute("totalEstandares", estandares.size());
-        return "/estandar/listado";
+        return "/habitacion_estandar/listado";
     }
 
     @GetMapping("/nuevo")
     public String estandarNuevo(Estandar estandar) {
-        return "/estandar/modifica";
+        return "/habitacion_estandar/modifica";
     }
 
     @PostMapping("/guardar")
     public String estandarGuardar(Estandar estandar) {
         estandarService.save(estandar);
-        return "redirect:/estandar/listado";
+        return "redirect:/habitacion_estandar/listado";
     }
 
     @GetMapping("/eliminar/{id}")
     public String estandarEliminar(Estandar estandar) {
         estandarService.delete(estandar);
-        return "redirect:/estandar/listado";
+        return "redirect:/habitacion_estandar/listado";
     }
 
     @GetMapping("/modificar/{id}")
     public String categoriaModificar(Estandar estandar, Model model) {
         estandar = estandarService.getEstandar(estandar);
         model.addAttribute("estandar", estandar);
-        return "/estandar/modifica";
+        return "/habitacion_estandar/modifica";
     }
 }
