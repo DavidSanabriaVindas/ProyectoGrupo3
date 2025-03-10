@@ -1,14 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
-
 package Proyecto.Proyecto.service;
 
-/**
- *
- * @author Hp
- */
-public interface PremiumService {
+import Proyecto.Proyecto.domain.Premium;
+import java.util.List;
 
+public interface PremiumService {
+    
+    public List<Premium> getPremium(boolean activos);
+    
+    public Premium getPremium(Premium premium);
+    
+    public void save(Premium premium);
+    
+    // Se elimina el categoria que tiene el id pasado por parámetro
+    public void delete(Premium premium);
 }
+
