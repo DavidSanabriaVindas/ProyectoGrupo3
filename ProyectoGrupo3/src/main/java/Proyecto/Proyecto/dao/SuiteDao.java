@@ -5,10 +5,9 @@
 
 package Proyecto.Proyecto.dao;
 
-/**
- *
- * @author Hp
- */
-public interface SuiteDao {
+import Proyecto.Proyecto.domain.Suite;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SuiteDao extends JpaRepository <Suite, Long>{
 
 }
