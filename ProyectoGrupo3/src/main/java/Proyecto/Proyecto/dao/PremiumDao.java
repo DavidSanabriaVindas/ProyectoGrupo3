@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
-
 package Proyecto.Proyecto.dao;
 
-/**
- *
- * @author Hp
- */
-public interface PremiumDao {
+import Portafolio.Portafolio.domain.Premium;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+public interface PremiumDao extends JpaRepository<Premium, Long> {
 }
+
+
