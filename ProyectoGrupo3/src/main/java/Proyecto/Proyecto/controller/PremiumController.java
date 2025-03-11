@@ -44,9 +44,9 @@ public class PremiumController {
     @GetMapping("/modificar/{id}")
     public String premiumModificar(Premium premium, Model model) {
         premium = premiumService.getPremium(premium);
-        model.addAttribute("habitacion_premium", premium);
+        model.addAttribute("premium", premium); 
         return "/premium/modifica";
-    }   
+} 
 }
 
 
