@@ -35,60 +35,58 @@
         <p>Habitación Premium >>></p>
     </div>
 
-    <div class="Nosotros_BG">
-        <div class="Nosotros">
-            <div class="contenido">
-                <div class="staff">
-                    <caption class="ListaActividades">Lista de Reservas Premium</caption>
-                    <p>Nuestra habitación premium ofrece un espacio elegante y lujoso, ideal para viajeros que buscan confort y exclusividad. <br>Cuenta con una amplia cama king-size, aire acondicionado, Wi-Fi de alta velocidad, televisión Smart TV y un baño privado con artículos de aseo de lujo.<br> Perfecta para estancias especiales y viajeros exigentes.</p>
-                    <br>
-                </div>
-                <div class="text-end mb-3">
-                    <a class="btn btn-primary" th:href="@{/premium/nuevo}">Nueva Reserva</a>
-                </div>
-                <div class="Actividades_AireLibre">
-                    <table class="table table-striped table-bordered table-hover table-responsive">
-                        <thead class="table-dark">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Cédula</th>
-                                <th scope="col">Teléfono</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="premium : ${premium}">
-                                <td th:text="${premium.id}"></td>
-                                <td th:text="${premium.nombre}"></td>
-                                <td th:text="${premium.apellido}"></td>
-                                <td th:text="${premium.cedula}"></td>
-                                <td th:text="${premium.telefono}"></td>
-                                <td th:text="${premium.correo}"></td>
-                                <td th:text="${premium.activo ? 'Activo' : 'Inactivo'}"></td>
-                                <td>
-                                    <a class="btn btn-warning btn-sm" th:href="@{/premium/modificar/} + ${premium.id}">Modificar</a>
-                                    <a class="btn btn-danger btn-sm" th:href="@{/premium/eliminar/} + ${premium.id}">Eliminar</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center mt-3">
-                        <p>Total de reservas: <span th:text="${totalPremium}"></span></p>
-                    </div>
-                </div>
-                <br>
-                <br>
-                <div class="imagen">
-                    <img src="/img/staff.jpg" alt="Imagen del equipo">
+    <div class="contenedor contenido">
+        <div class="staff">
+            <div class="text-end mb-3">
+                <a class="btn btn-primary" th:href="@{/premium/nuevo}">Nueva Reserva</a>
+            </div>
+            <div class="TablaPremium">
+                <table class="table table-striped table-bordered table-hover table-responsive">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Cédula</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="premium : ${premium}">
+                            <td th:text="${premium.id}"></td>
+                            <td th:text="${premium.nombre}"></td>
+                            <td th:text="${premium.apellido}"></td>
+                            <td th:text="${premium.cedula}"></td>
+                            <td th:text="${premium.telefono}"></td>
+                            <td th:text="${premium.correo}"></td>
+                            <td>
+                                <span th:if="${premium.activo}" class="badge bg-success">Activo</span>
+                                <span th:unless="${premium.activo}" class="badge bg-secondary">Inactivo</span>
+                            </td>
+                            <td>
+                                <a class="btn btn-warning btn-sm" th:href="@{/premium/modificar/} + ${premium.id}">Modificar</a>
+                                <a class="btn btn-danger btn-sm" th:href="@{/premium/eliminar/} + ${premium.id}"
+                                    onclick="return confirm('¿Está seguro que desea eliminar esta reserva?')">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center mt-3">
+                    <p>Total de reservas: <span th:text="${totalPremium}"></span></p>
                 </div>
             </div>
         </div>
+
     </div>
-    <br>
+    
+    <div class="sombra">
+    <div class="TextoHabitaciones">
+            <p>La habitación premium es una opción más amplia y elegante, pensada para quienes desean mayor confort.<br> Dispone de una cama king-size o dos camas queen-size, minibar, cafetera, escritorio de trabajo y una vista privilegiada. <br>Además, incluye acceso a servicios exclusivos como desayuno buffet y check-out extendido.</p>
+        </div>
+    </div>
     <br>
     <br>
     <footer class="footer">
@@ -97,7 +95,6 @@
         </div>
         <div class="footer-center">
             <div class="address">
-                <i class="fas fa-map-marker-alt"></i>
                 <p>Dirección: Calle Loria, Alajuela</p>
             </div>
             <div class="policies">
@@ -106,11 +103,9 @@
         </div>
         <div class="footer-right">
             <div class="contact">
-                <i class="fas fa-envelope"></i>
                 <p>Correo: BlueOrchid@gmail.com</p>
             </div>
             <div class="contact phone">
-                <i class="fas fa-phone"></i>
                 <p>Teléfono: 2436-0363</p>
             </div>
         </div>

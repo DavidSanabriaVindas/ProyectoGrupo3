@@ -408,3 +408,35 @@ text-decoration: underline;
   width: 90%;
   text-align: center;
  }
+ .TablaPremium{
+     justify-content: center;
+     
+ }
+ .TextoHabitaciones{
+     font-size: 2rem;
+     color: var(--navyBlue);
+     text-align: center;
+ }
+ .TextoBg{
+     
+      background-color: var(--navyBlue);
+  color: var(--navyBlue);
+  padding: 1rem 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  
+  font-size: 2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 1rem;
+  width: 500o;
+  height: 500px;
+    text-align: center
+ }
+ 
+ .sombra{
+     -webkit-box-shadow: 10px 10px 48px 3px rgba(0,0,0,1);
+-moz-box-shadow: 10px 10px 48px 3px rgba(0,0,0,1);
+box-shadow: 10px 10px 48px 3px rgba(0,0,0,1);
+ }
