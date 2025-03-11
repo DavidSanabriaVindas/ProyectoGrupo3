@@ -1,295 +1,399 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f8f9fa;
-}
-
-h1 {
-    color: #007bff;
-    margin-bottom: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    min-width: 500px;
-}
-
-th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    min-width: 150px;
-}
-
-th {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-}
-
-tr:hover {
-    background-color: #f1f1f1;
-}
-
-form {
-    max-width: 600px;
-    margin: 20px 0;
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-form div {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-textarea {
-    height: 100px;
-    resize: vertical;
-}
-
-button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #0069d9;
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    margin-top: 20px;
-    margin-right: 10px;
-}
-
-.btn:hover {
-    background-color: #0069d9;
-}
-
-.enlaces {
-    margin-top: 20px;
-}
-
-:root {
-    --blue: #334376;
-    --blanco: #ffffff;
-    --navyBlue: #081a40;
-    --grisOscuro: #646464;
-    --grisClaro: #A0A0A0;
+:root{
+  --blue: #334376;
+  --blanco:#ffffff;
+  --navyBlue:#081a40; 
+  --grisOscuro:#646464;
+  --grisClaro:#A0A0A0;
 }
 
 .Blue {
-    text-align: center;
-    width: 550px;
-    height: 50px;
-    background-color: var(--blue);
-    border-radius: 50px;
-    margin: auto;
-    margin-top: 5rem;
-    line-height: 150px;
+  text-align: center;
+  width: 550px;
+  height: 50px;
+  background-color:var(--blue);
+  border-radius: 50px; 
+  margin: auto;
+  margin-top: 5rem;
+  text-align: center;
+  line-height: 150px; 
 }
 
 .Orchid {
-    color: #ffffff;
-    font-size: 1.5rem;
+  color: #ffffff;
+  font-size: 1.5rem;
 }
 
-.contenedor {
-    max-width: 1500px;
-    margin: 0 auto;
+/* Contenedor principal centrado */
+.contenedor{
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
+/* Estilos para la barra de navegación */
 .nav-fondo {
-    background-color: var(--blue);
+  background-color: var(--blue);
 }
 
-.Navegacion-Principal a {
-    color: var(--blanco);
-    text-decoration: none;
-    font-size: 2rem;
-    font-weight: bold;
-    padding: 10px;
+.Navegacion-Principal a{
+  color: var(--blanco);
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 10px;
 }
 
+/* Diseño de la navegación */
 .Navegacion-Principal {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column; /* En móviles, los elementos se apilan */
+  justify-content: space-between;
 }
 
+/* En pantallas más grandes, la navegación se vuelve horizontal */
 @media (min-width: 768px) {
-    .Navegacion-Principal {
-        flex-direction: row;
-    }
+  .Navegacion-Principal{
+      flex-direction: row;
+  }
 }
 
-.Navegacion-Principal a:hover {
-    background-color: var(--navyBlue);
-    color: var(--blanco);
+/* Efecto al pasar el mouse por los enlaces */
+.Navegacion-Principal a:hover{
+  background-color: var(--navyBlue);
+  color: var(--blanco);
 }
 
-.h2 {
-    padding-top: 3rem;
-    text-align: center;
-    text-decoration: none;
-    color: var(--blue);
+.h2{
+  padding-top: 3rem;
+  text-align: center;
+  text-decoration:none;
+  color: var(--blue);
 }
 
 .card {
-    border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px; /* Example: Round card corners */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Example: Add a shadow */
 }
 
 .card-body {
-    padding: 0.5rem;
+  padding: 0.5rem;
 }
 
 .btn-primary {
-    height: 45px;
-    width: 250px;
-    margin: auto;
-    background-color: var(--blue);
-    border-color: var(--blanco);
+  height: 45px;
+  width: 250px;
+  margin: auto;
+  background-color: var(--blue); 
+  border-color: var(--blanco);
 }
-
 .center-button {
-    text-align: center;
+  text-align: center; 
 }
 
 .footer {
-    background-color: var(--blue);
-    color: var(--blanco);
-    padding: 20px 30px;
-    height: auto;
-    width: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+  background-color:var(--blue);
+  color: var(--blanco);
+  padding: 20px 30px;
+  height: auto;
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
+/* Columna izquierda con texto de presentación */
 .footer-left {
-    flex: 2;
-    max-width: 400px;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    padding-left: 10px;
+  flex: 2;
+  max-width: 400px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  padding-left: 10px;
+  font-size: 0.95rem;
 }
-
 .footer-left p {
-    padding: auto;
+padding: auto;
 }
 
+/* Columna central con dirección y políticas */
 .footer-center {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  gap: 10px;
+  font-size: 1.5rem;
 }
 
 .footer-center .address {
-    display: flex;
-    align-items: end;
-    gap: 2px;
+  display: flex;
+  align-items: end;
+  gap: 2px;
 }
 
 .footer-center .policies {
-    display: flex;
+  display: flex;
 }
 
 .footer-center .policies a {
-    color: var(--blanco);
-    text-decoration: none;
-    align-items: end;
+  color: var(--blanco);
+  text-decoration: none;
+  align-items: end;
 }
 
+/* Columna derecha con contacto */
 .footer-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  font-size: 1.5rem;
 }
 
 .footer-right .contact {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .copyright {
-    width: 100%;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2rem;
+  color: var(--blanco);
+}
+
+/* Diseño responsive */
+@media (max-width: 768px) {
+  .footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+  }
+  
+  .footer-left, .footer-center, .footer-right {
+      width: 100%;
+      max-width: 100%;
+  }
+  
+  .footer-right {
+      align-items: flex-start;
+  }
+}
+
+.Migajas{
+color: var(--navyBlue);
+font-size: 4rem;
+text-align: center;
+
+}
+.Migajas p{
+  color: var(--navyBlue);
+  font-size: 2rem;
+  text-align: center;
+  
+  }
+
+.Nosotros_BG {
+  width: auto;
+  height: auto;
+  border-radius: 3%;
+  background-color: var(--navyBlue);
+  display: grid;
+  place-items: center;
+}
+
+.Nosotros {
+  width: 1580px; 
+  height: 650px;
+  border-radius: 10%;
+  background-color:var(--blue); 
+  padding: 20px; 
+  text-align: center; 
+}
+
+.Nosotros h2 {
+  margin-bottom: 20px;
+  color: var(--blanco); 
+}
+.Nosotros p .Actividades_AireLibre p {
+  margin-bottom: 20px;
+  color: var(--blanco); 
+}
+
+.contenido {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.staff p{
+  font-weight: bold;
+  font-size: 20px;
+  flex: 1;
+  text-align: left;
+  padding: 20px;
+  color: var(--blanco);
+}
+
+.imagen {
+  flex: 1;
+  text-align: right;
+  padding: 20px;
+}
+
+.imagen img {
+  max-width: 100%;
+  height: 450px;
+  border-radius: 7px;
+}
+
+
+@media (max-width: 768px) {
+  .contenido {
+    flex-direction: column;
+  }
+  
+  .imagen {
     text-align: center;
-    margin-top: 20px;
-    font-size: 2rem;
-    color: var(--blanco);
+  }
+}
+
+.Actividades_para_ti{
+
+  text-align: center;
+  color: var(--navyBlue);
+}
+.Actividades_AireLibre{
+  color: var(--white);
+}
+table {
+  min-width:500px; /* Establece un ancho mínimo para la tabla */
+}
+
+th, td {
+  min-width: 150px; /* Establece un ancho mínimo para las celdas */
+}
+
+.ListaActividades{
+  color: var(--blanco);
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.ReservaAhora{
+text-align: center;
+}
+.Texto_Nosotros{
+color: var(--blanco);
+text-decoration: underline;
+}
+
+/* Estilos para el formulario de reserva */
+.formulario-container {
+  background-color: var(--blanco);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-title {
+  color: var(--navyBlue);
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  flex: 1 0 300px;
+  margin: 0 10px 15px 10px;
+}
+
+.formulario-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: var(--navyBlue);
+}
+
+.formulario-container input, 
+.formulario-container select, 
+.formulario-container textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--grisClaro);
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.formulario-container input:focus, 
+.formulario-container select:focus, 
+.formulario-container textarea:focus {
+  border-color: var(--blue);
+  outline: none;
+}
+
+.btn-reserva {
+  background-color: var(--blue);
+  color: var(--blanco);
+  border: none;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.btn-reserva:hover {
+  background-color: var(--navyBlue);
+}
+
+.info-text {
+  font-size: 14px;
+  color: var(--grisOscuro);
+  margin-top: 5px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+.checkbox-container label {
+  display: inline;
 }
 
 @media (max-width: 768px) {
-    .footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-    }
-
-    .footer-left,
-    .footer-center,
-    .footer-right {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .footer-right {
-        align-items: flex-start;
-    }
-}
-
-.Migajas {
-    color: var(--navyBlue);
-    font-size: 4rem;
-    text-align: center;
-}
-
-.Migajas p {
-    color: var(--navyBlue);
-    font-size: 2rem;
-    text-align: center;
-}
-
-.Formulario{
-    text-align: center;
-    justify-content: center;
+  .form-group {
+    flex: 1 0 100%;
+    margin: 0 0 15px 0;
+  }
+  
+  .Nosotros {
+    width: 100%;
+    height: auto;
+    border-radius: 5%;
+  }
+  
+  .formulario-container {
+    padding: 20px;
+  }
 }
