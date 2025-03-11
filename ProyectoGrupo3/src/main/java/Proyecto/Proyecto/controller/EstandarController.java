@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/habitacion_estandar")
+@RequestMapping("/estandar")
 
 public class EstandarController {
 
@@ -23,30 +23,30 @@ public class EstandarController {
         var estandares = estandarService.getEstandar(false);
         model.addAttribute("estandares", estandares);
         model.addAttribute("totalEstandares", estandares.size());
-        return "/habitacion_estandar/listado";
+        return "/estandar/listado";
     }
 
     @GetMapping("/nuevo")
     public String estandarNuevo(Estandar estandar) {
-        return "/habitacion_estandar/modifica";
+        return "/estandar/modifica";
     }
 
     @PostMapping("/guardar")
     public String estandarGuardar(Estandar estandar) {
         estandarService.save(estandar);
-        return "redirect:/habitacion_estandar/listado";
+        return "redirect:/estandar/listado";
     }
 
     @GetMapping("/eliminar/{id}")
     public String estandarEliminar(Estandar estandar) {
         estandarService.delete(estandar);
-        return "redirect:/habitacion_estandar/listado";
+        return "redirect:/estandar/listado";
     }
 
     @GetMapping("/modificar/{id}")
     public String categoriaModificar(Estandar estandar, Model model) {
         estandar = estandarService.getEstandar(estandar);
         model.addAttribute("estandar", estandar);
-        return "/habitacion_estandar/modifica";
+        return "/estandar/modifica";
     }
 }

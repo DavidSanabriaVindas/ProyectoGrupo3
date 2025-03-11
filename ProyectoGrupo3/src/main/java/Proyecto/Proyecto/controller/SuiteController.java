@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 
-@RequestMapping("/habitacion_suite")
+@RequestMapping("/suite")
 public class SuiteController {
     
     @Autowired
@@ -26,30 +26,30 @@ public class SuiteController {
         var suite = suiteService.getSuites(false);
         model.addAttribute("suite", suite);
         model.addAttribute("totalSuite", suite.size());
-        return "/habitacion_suite/listado";
+        return "/suite/listado";
     }
   
      @GetMapping("/nuevo")
     public String suiteNuevo(Suite suite) {
-        return "/habitacion_suite/modifica";
+        return "/suite/modifica";
     }
     
     @PostMapping("/guardar")
     public String suiteGuardar(Suite suite){
         suiteService.save(suite);
-        return "redirect:/habitacion_suite/listado";
+        return "redirect:/suite/listado";
     }
 
     @GetMapping("/eliminar/{id}")
     public String suiteEliminar(Suite suite) {
         suiteService.delete(suite);
-        return "redirect:/habitacion_suite/listado";
+        return "redirect:/suite/listado";
     }
 
     @GetMapping("/modificar/{id}")
     public String suiteModificar(Suite suite, Model model) {
         suite = suiteService.getSuite(suite);
         model.addAttribute("suite", suite);
-        return "/habitacion_suite/modifica";
+        return "/suite/modifica";
     }   
 }
