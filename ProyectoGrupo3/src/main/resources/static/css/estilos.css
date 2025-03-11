@@ -100,8 +100,6 @@
   justify-content: space-between;
   align-items: center;
 }
-
-/* Columna izquierda con texto de presentación */
 .footer-left {
   flex: 2;
   max-width: 400px;
@@ -114,7 +112,7 @@
 padding: auto;
 }
 
-/* Columna central con dirección y políticas */
+
 .footer-center {
   flex: 1;
   display: flex;
@@ -140,7 +138,7 @@ padding: auto;
   align-items: end;
 }
 
-/* Columna derecha con contacto */
+
 .footer-right {
   flex: 1;
   display: flex;
@@ -269,11 +267,11 @@ text-align: center;
   color: var(--white);
 }
 table {
-  min-width:500px; /* Establece un ancho mínimo para la tabla */
+  min-width:500px;
 }
 
 th, td {
-  min-width: 150px; /* Establece un ancho mínimo para las celdas */
+  min-width: 150px; 
 }
 
 .ListaActividades{
@@ -290,7 +288,7 @@ color: var(--blanco);
 text-decoration: underline;
 }
 
-/* Estilos para el formulario de reserva */
+
 .formulario-container {
   background-color: var(--blanco);
   border-radius: 10px;
@@ -397,3 +395,16 @@ text-decoration: underline;
     padding: 20px;
   }
 }
+.BTN_Contacto{
+  background-color: var(--white);
+  color: var(--navyBlue);
+  padding: 1rem 3rem;
+  margin-top: 2rem;
+  font-size: 2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 4rem;
+  width: 90%;
+  text-align: center;
+ }

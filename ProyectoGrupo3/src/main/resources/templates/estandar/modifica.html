@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Blue Orchid</title>
+</head>
+<body>
+    <div class="Nosotros_BG">
+        <div class="Nosotros">
+            <div class="contenido">
+                <br>
+                <br>
+                <button class="btn btn-primary btn-lg" id="btn-agregar" type="button">Reservas</button>
+                <div id="formulario-reserva" style="display: none;">
+                    <h2>Formulario de Reserva</h2>
+                    <form id="reserva-form">
+                        <label for="nombre">Nombre:</label><br>
+                        <input type="text" id="nombre" name="nombre"><br><br>
+                        <label for="fecha">Fecha:</label><br>
+                        <input type="date" id="fecha" name="fecha"><br><br>
+                        <label for="hora">Hora:</label><br>
+                        <input type="time" id="hora" name="hora"><br><br>
+                        <label for="tipo-habitacion">Tipo de Habitación:</label><br>
+                        <select id="tipo-habitacion" name="tipo-habitacion">
+                            <option value="estandar">Estándar</option>
+                            <option value="deluxe">Deluxe</option>
+                            <option value="suite">Suite</option>
+                        </select><br><br>
+                        <button type="submit">Reservar</button>
+                    </form>
+                </div>
+                <div class="imagen">
+                    <img src="/img/staff.jpg" alt="Imagen del equipo">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
