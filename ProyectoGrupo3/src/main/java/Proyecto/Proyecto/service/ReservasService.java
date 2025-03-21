@@ -1,20 +1,20 @@
 package Proyecto.Proyecto.service;
 
-import Proyecto.Proyecto.domain.Estandar;
+import Proyecto.Proyecto.domain.Reservas;
 import java.util.List;
 
-public interface EstandarService {
+public interface ReservasService {
 
     // Se obtiene un listado de categorias en un List
-    public List<Estandar> getEstandar(boolean activo);
+    public List<Reservas> getReservas(boolean activo);
     
     // Se obtiene un Categoria, a partir del id de un categoria
-    public Estandar getEstandar(Estandar estandar);
+    public Reservas getReservas(Reservas reservas);
     
     // Se inserta un nuevo categoria si el id del categoria esta vacío
     // Se actualiza un categoria si el id del categoria NO esta vacío
-    public void save(Estandar estandar);
+    public void save(Reservas reservas);
     
     // Se elimina el categoria que tiene el id pasado por parámetro
-    public void delete(Estandar estandar);
+    public void delete(Reservas reservas);
 }

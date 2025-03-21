@@ -31,8 +31,8 @@
     </header>
 
     <div class="Migajas">
-        <h1 th:text="${estandar.id != null ? 'Editar Reserva' : 'Nueva Reserva'}"></h1>
-        <p>Habitacion Estandar >> <span th:text="${estandar.id != null ? 'Editar' : 'Nueva'}"></span></p>
+        <h1 th:text="${reservas.id != null ? 'Editar Reserva' : 'Nueva Reserva'}"></h1>
+        <p>Reservas >> <span th:text="${reservas.id != null ? 'Editar' : 'Nueva'}"></span></p>
     </div>
 
     <div class="Nosotros_BG">
@@ -40,10 +40,10 @@
             <div class="contenido">
                 <div class="card mx-auto" style="max-width: 600px;">
                     <div class="card-header bg-primary text-white">
-                        <h3 th:text="${estandar.id != null ? 'Editar Reserva Estándar' : 'Nueva Reserva Estándar'}"></h3>
+                        <h3 th:text="${reservas.id != null ? 'Editar Reserva Estándar' : 'Nueva Reserva'}"></h3>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/estandar/guardar}" method="post" th:object="${estandar}">
+                        <form th:action="@{/reservas/guardar}" method="post" th:object="${reservas}">
                             <input type="hidden" name="id" th:field="*{id}">
                             
                             <div class="mb-3">
@@ -71,13 +71,18 @@
                                 <input type="email" class="form-control" id="correo" name="correo" th:field="*{correo}" required>
                             </div>
                             
+                            <div class="mb-3">
+                                <label for="tipoHabitacion" class="form-label">TipoHabitacion</label>
+                                <input type="text" class="form-control" id="tipoHabitacion" name="tipoHabitacion" th:field="*{tipoHabitacion}" required>
+                            </div>
+                            
                             <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="activo" name="activo" th:field="*{activo}">
                                 <label class="form-check-label" for="activo">Activo</label>
                             </div>
                             
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <a class="btn btn-secondary me-md-2" th:href="@{/estandar/listado}">Cancelar</a>
+                                <a class="btn btn-secondary me-md-2" th:href="@{/reservas/listado}">Cancelar</a>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
                         </form>
