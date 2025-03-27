@@ -17,4 +17,7 @@ public interface ReservasService {
     
     // Se elimina el categoria que tiene el id pasado por parámetro
     public void delete(Reservas reservas);
+    
+    // Metodo para la consulta de reserva por id 
+    public List<Reservas> findByIdBetweenOrderByNombre(Long idInicio, Long idFin);
 }

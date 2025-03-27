@@ -41,4 +41,11 @@ public class ReservasServiceImpl implements ReservasService{
     public void delete(Reservas reservas) {
         reservasDao.delete(reservas);
     }
+    
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Reservas> findByIdBetweenOrderByNombre(Long idInicio, Long idFin) {
+        return reservasDao.findByIdBetweenOrderByNombre(idInicio, idFin);
+    }
 }
