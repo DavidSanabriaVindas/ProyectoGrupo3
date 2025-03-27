@@ -9,7 +9,7 @@
     <title>Gestión de Reserva Estándar</title>
 </head>
 <body>
-    <header>
+        <header>
         <div class="Blue">
             <div class="Orchid">
                 <h1>Blue Orchid</h1>
@@ -29,15 +29,7 @@
             </nav>
         </div>
     </header>
-
-    <div class="Migajas">
-        <h1 th:text="${reservas.id != null ? 'Editar Reserva' : 'Nueva Reserva'}"></h1>
-        <p>Reservas >> <span th:text="${reservas.id != null ? 'Editar' : 'Nueva'}"></span></p>
-    </div>
-
-    <div class="Nosotros_BG">
-        <div class="Nosotros">
-            <div class="contenido">
+   
                 <div class="card mx-auto" style="max-width: 600px;">
                     <div class="card-header bg-primary text-white">
                         <h3 th:text="${reservas.id != null ? 'Editar Reserva Estándar' : 'Nueva Reserva'}"></h3>
@@ -72,8 +64,13 @@
                             </div>
                             
                             <div class="mb-3">
-                                <label for="tipoHabitacion" class="form-label">TipoHabitacion</label>
-                                <input type="text" class="form-control" id="tipoHabitacion" name="tipoHabitacion" th:field="*{tipoHabitacion}" required>
+                                <label for="tipoHabitacion" class="form-label">Tipo de Habitación</label>
+                                <select class="form-select" id="tipoHabitacion" name="tipoHabitacion" th:field="*{tipoHabitacion}" required>
+                                    <option value="">Seleccione un tipo de habitación</option>
+                                    <option value="Individual">Habitacion Estandar</option>
+                                    <option value="Doble">Habitacion Premium</option>
+                                    <option value="Suite"> Habitacion Suite</option>
+                                </select>
                             </div>
                             
                             <div class="mb-3 form-check">
@@ -88,20 +85,12 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <br>
-    <br>
-    <br>
-    <footer class="footer">
+   <footer class="footer">
         <div class="footer-left">
             <p>En Blue Orchid nos dedicamos a brindar una experiencia cómoda y acogedora para nuestros huéspedes <br> Nuestro compromiso es ofrecer un servicio de calidad con habitaciones modernas y una estancia inolvidable <br> Ya sea por negocios o por placer, haremos todo para hacer de tu visita una experiencia única.</p>
         </div>
         <div class="footer-center">
             <div class="address">
-                <i class="fas fa-map-marker-alt"></i>
                 <p>Dirección: Calle Loria, Alajuela</p>
             </div>
             <div class="policies">
@@ -110,11 +99,9 @@
         </div>
         <div class="footer-right">
             <div class="contact">
-                <i class="fas fa-envelope"></i>
                 <p>Correo: BlueOrchid@gmail.com</p>
             </div>
             <div class="contact phone">
-                <i class="fas fa-phone"></i>
                 <p>Teléfono: 2436-0363</p>
             </div>
         </div>
@@ -122,5 +109,7 @@
             © Blue Orchid | Todos los derechos reservados
         </div>
     </footer>
+    
+    
 </body>
 </html>
