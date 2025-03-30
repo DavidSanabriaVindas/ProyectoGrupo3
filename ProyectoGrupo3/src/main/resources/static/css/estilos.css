@@ -508,7 +508,7 @@ box-shadow: 10px 10px 48px 3px rgba(0,0,0,1);
 
 .cut {
     color: var(--blanco)
-  background-color: #15172b;
+  background-color #15172b;
   border-radius: 10px;
   height: 20px;
   left: 20px;
