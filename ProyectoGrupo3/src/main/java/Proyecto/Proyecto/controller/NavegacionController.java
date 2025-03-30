@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class NavegacionController {
     
-    @GetMapping("/")
+    @GetMapping("/index")
     public String mostrarIndex() {
         return "index"; // Página de inicio
     }
@@ -51,4 +51,11 @@ public class NavegacionController {
     public String mostrarActividadEntretenimientos() {
         return "Actividad_Entretenimientos";
     }
+
+
+@GetMapping("/inicio_Sesion")  // Note the exact match with your HTML filename
+public String mostrarInicioSesion() {
+    return "inicio_Sesion";  // This returns the template name
+
+}
 }
