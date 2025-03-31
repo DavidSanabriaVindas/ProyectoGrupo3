@@ -73,7 +73,7 @@ public class ReservasController {
         model.addAttribute("idInicial", idInicio);
         model.addAttribute("idFinal", idFin);
     
-        return "pruebas/listado2";
+        return "reservas/listado";
     }
 }
 
