@@ -41,7 +41,7 @@ CREATE TABLE usuario (
   telefono VARCHAR(15) NULL,
   ruta_imagen varchar(1024),
   activo boolean,
-  PRIMARY KEY (`id_usuario`)
+  PRIMARY KEY (id_usuario)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
 -- Datos de ejemplo de usuarios (passwords hasheados con bcrypt)
@@ -68,8 +68,7 @@ CREATE TABLE rol (
 -- Asignación de roles a usuarios
 INSERT INTO rol (id_rol, nombre, id_usuario) VALUES
  (1, 'ADMIN', 1), 
- (2, 'USER', 1),
- (3, 'USER', 2);
+ (2, 'USER', 1);
 
 -- Rutas protegidas y roles que pueden accederlas
 CREATE TABLE ruta (

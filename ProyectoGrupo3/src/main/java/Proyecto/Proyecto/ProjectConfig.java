@@ -82,7 +82,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                         .permitAll()
                         // Rutas para ADMIN
                         .requestMatchers("/reservas/nuevo", "/reservas/guardar", 
-                                      "/reservas/modificar/**", "/reservas/eliminar/**", 
+                                      "/reservas/modificar/1", "/reservas/eliminar/**", 
                                       "/usuario/**", "/constante/**", "/role/**", 
                                       "/usuario_role/**", "/ruta/**", "/reportes/**")
                         .hasRole("ADMIN")
