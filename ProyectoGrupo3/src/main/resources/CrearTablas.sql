@@ -83,19 +83,8 @@ INSERT INTO ruta (patron, rol_name) VALUES
 -- Rutas para administradores
 ('/reservas/nuevo', 'ADMIN'),
 ('/reservas/guardar', 'ADMIN'),
-('/reservas/modificar/1', 'ADMIN'),
 ('/reservas/eliminar/**', 'ADMIN'),
-('/usuario/**', 'ADMIN'),
-('/constante/**', 'ADMIN'),
-('/role/**', 'ADMIN'),
-('/usuario_role/**', 'ADMIN'),
-('/ruta/**', 'ADMIN'),
-('/reportes/**', 'ADMIN'),
--- Rutas para usuarios regulares
-('/reservas/consultar', 'USER'),
-('/reservas/listar', 'USER'),
-('/cuenta/**', 'USER'),
-('/perfil/**', 'USER');
+('/reservas/modificar/{id}', 'ADMIN');
 
 -- Rutas públicas que no requieren autenticación
 CREATE TABLE ruta_permit (
@@ -108,7 +97,7 @@ CREATE TABLE ruta_permit (
 INSERT INTO ruta_permit (patron) VALUES 
 ('/'),
 ('/index'),
-('/login'),
+('/inicio_Sesion'),
 ('/registro/**'),
 ('/disponibilidad/**'),
 ('/contacto/**'),
