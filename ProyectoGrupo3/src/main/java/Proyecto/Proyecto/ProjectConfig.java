@@ -42,9 +42,16 @@ public class ProjectConfig implements WebMvcConfigurer {
     }
 
     @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver slr = new SessionLocaleResolver();
+        slr.setDefaultLocale(new Locale("es"));
+        return slr;
+    }
+
+    @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
-        interceptor.setParamName("lang");  // Configura el parámetro 'lang' para cambiar el idioma
+        interceptor.setParamName("lang");
         return interceptor;
     }
 
@@ -57,6 +64,11 @@ public class ProjectConfig implements WebMvcConfigurer {
     }
 
     @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((request) -> request
@@ -65,61 +77,31 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/js/**","/css/**","/images/**","/webjars/**")
                     .permitAll()
                 .requestMatchers(
-                    "/reservas/nuevo","/reservas/guardar",
-                    "/reservas/modificar/**","/reservas/eliminar/**"
-                ).hasRole("ADMIN")
-                .requestMatchers(
-                    "/reservas/listado"
+                    "/reservas/**"
                 ).hasAnyRole("ADMIN", "USER")
             )
             .formLogin((form) -> form
-                .loginPage("/inicio_Sesion").permitAll())
+                .loginPage("/inicio_Sesion")
+                .defaultSuccessUrl("/reservas/listado", true)
+                .permitAll())
             .logout((logout) -> logout.permitAll());
         return http.build();
     }
 
     @Bean
     public UserDetailsService users() {
-        UserDetails admin = User.builder()
-            .username("juan")
-            .password("{noop}123")
-            .roles("USER", "ADMIN")
-            .build();
-        UserDetails user = User.builder()
-            .username("pedro")
-            .password("{noop}789")
-            .roles("USER")
-            .build();
-
-        if (dataSource != null) {
-            JdbcUserDetailsManager jdbcUsers = new JdbcUserDetailsManager(dataSource);
-
-            // Consulta corregida para obtener los usuarios
-            jdbcUsers.setUsersByUsernameQuery(
-                "SELECT username, password, activo FROM usuario WHERE username = ?");
-            
-            // Consulta corregida para obtener los roles
-            jdbcUsers.setAuthoritiesByUsernameQuery(
-                "SELECT r.nombre FROM rol r " +
-                "JOIN usuario u ON u.id_usuario = r.id_usuario " +
-                "WHERE u.username = ?");
-            
-            // Registrar los usuarios en memoria como respaldo si no existen en BD
-            try {
-                if (!jdbcUsers.userExists("juan")) {
-                    jdbcUsers.createUser(admin);
-                }
-                if (!jdbcUsers.userExists("pedro")) {
-                    jdbcUsers.createUser(user);
-                }
-            } catch (Exception e) {
-                System.out.println("Error al configurar usuarios en BD: " + e.getMessage());
-                return new InMemoryUserDetailsManager(admin, user);
-            }
-            
-            return jdbcUsers;
-        }
+        JdbcUserDetailsManager jdbcUsers = new JdbcUserDetailsManager(dataSource);
         
-        return new InMemoryUserDetailsManager(admin, user);
+        // Consulta para obtener usuarios (username, password, enabled)
+        jdbcUsers.setUsersByUsernameQuery(
+            "SELECT username, password, activo FROM usuario WHERE username = ?");
+        
+        // Consulta para obtener roles (username, authority)
+        jdbcUsers.setAuthoritiesByUsernameQuery(
+            "SELECT u.username, r.nombre FROM rol r " +
+            "JOIN usuario u ON u.id_usuario = r.id_usuario " +
+            "WHERE u.username = ?");
+        
+        return jdbcUsers;
     }
 }
