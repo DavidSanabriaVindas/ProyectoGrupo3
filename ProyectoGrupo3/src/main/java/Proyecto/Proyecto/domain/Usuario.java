@@ -1,4 +1,4 @@
-package Proyecto.Proyecto.domain;
+/*package Proyecto.Proyecto.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,3 +40,4 @@ public class Usuario implements Serializable{
     @JoinColumn(name="id_usuario")
     private List<Rol> roles;
 }
+*/

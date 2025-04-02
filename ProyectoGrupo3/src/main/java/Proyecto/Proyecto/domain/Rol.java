@@ -1,4 +1,4 @@
-package Proyecto.Proyecto.domain;
+/*package Proyecto.Proyecto.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,3 +28,4 @@ public class Rol implements Serializable {
     @Column(name = "id_usuario")
     private Long idUsuario;
 }
+*/

@@ -1,4 +1,4 @@
-package Proyecto.Proyecto.service.impl;
+/*package Proyecto.Proyecto.service.impl;
 
 import Proyecto.Proyecto.service.UsuarioDetailsService;
 import Proyecto.Proyecto.dao.UsuarioDao;
@@ -41,3 +41,4 @@ public class UsuarioDetailsServiceImpl implements UsuarioDetailsService, UserDet
         return new User(username, usuario.getPassword(), roles);
     }
     }
+*/
