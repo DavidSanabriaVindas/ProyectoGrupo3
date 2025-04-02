@@ -52,10 +52,9 @@ public class NavegacionController {
         return "Actividad_Entretenimientos";
     }
 
-
-@GetMapping("/inicio_Sesion")  // Note the exact match with your HTML filename
+@GetMapping("/inicio_Sesion") 
 public String mostrarInicioSesion() {
-    return "inicio_Sesion";  // This returns the template name
+    return "inicio_Sesion";  
 
 }
 }
