@@ -30,7 +30,7 @@ INSERT INTO reservas (nombre, apellido, cedula, telefono, correo, tipo_habitacio
 
 -- SISTEMA DE SEGURIDAD - NUEVAS TABLAS
 
--- Tabla de usuarios para inicio de sesión
+/* Tabla de usuarios */
 CREATE TABLE usuario (
   id_usuario INT NOT NULL AUTO_INCREMENT,
   username varchar(20) NOT NULL,
@@ -39,17 +39,12 @@ CREATE TABLE usuario (
   apellidos VARCHAR(30) NOT NULL,
   correo VARCHAR(75) NULL,
   telefono VARCHAR(15) NULL,
-  ruta_imagen varchar(1024),
   activo boolean,
-  PRIMARY KEY (id_usuario)
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
+  PRIMARY KEY (id_usuario))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
 
--- Datos de ejemplo de usuarios (passwords hasheados con bcrypt)
-INSERT INTO usuario (id_usuario, username, password, nombre, apellidos, correo, telefono, ruta_imagen, activo) VALUES 
-(1, 'admin', '$2a$10$P1.w58XvnaYQUQgZUCk4aO/RTRl8EValluCqB3S2VMLTbRt.tlre.', 'Admin', 'Hotel', 'admin@hotel.com', '1112223333', 'https://example.com/images/admin.jpg', true),
-(2, 'usuario', '$2a$10$GkEj.ZzmQa/aEfDmtLIh3udIH5fMphx/35d0EYeqZL5uzgCJ0lQRi', 'Usuario', 'Normal', 'usuario@hotel.com', '4445556666', 'https://example.com/images/usuario.jpg', true);
-
--- Definición de roles del sistema (solo ADMIN y USER)
+/* Tabla de roles disponibles */
 CREATE TABLE role (  
   rol varchar(20),
   PRIMARY KEY (rol)  
@@ -57,70 +52,24 @@ CREATE TABLE role (
 
 INSERT INTO role (rol) VALUES ('ADMIN'), ('USER');
 
--- Relación entre usuarios y roles (muchos a muchos)
+/* Asignación de roles a los usuarios */
 CREATE TABLE rol (
   id_rol INT NOT NULL AUTO_INCREMENT,
-  nombre varchar(20),
-  id_usuario int,
+  nombre VARCHAR(20),
+  id_usuario INT,
   PRIMARY KEY (id_rol)
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
 
--- Asignación de roles a usuarios
 INSERT INTO rol (id_rol, nombre, id_usuario) VALUES
  (1, 'ADMIN', 1), 
- (2, 'USER', 1);
+ (2, 'USER', 1),
+ (3, 'USER', 2),
+ (4, 'USER', 3);
 
--- Rutas protegidas y roles que pueden accederlas
-CREATE TABLE ruta (
-    id_ruta INT AUTO_INCREMENT NOT NULL,
-    patron VARCHAR(255) NOT NULL,
-    rol_name VARCHAR(50) NOT NULL,
-    PRIMARY KEY (id_ruta)
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
-
--- Mapeo de rutas a roles específicos
-INSERT INTO ruta (patron, rol_name) VALUES 
--- Rutas para administradores
-('/reservas/nuevo', 'ADMIN'),
-('/reservas/guardar', 'ADMIN'),
-('/reservas/eliminar/**', 'ADMIN'),
-('/reservas/modificar/{id}', 'ADMIN');
-
--- Rutas públicas que no requieren autenticación
-CREATE TABLE ruta_permit (
-    id_ruta INT AUTO_INCREMENT NOT NULL,
-    patron VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id_ruta)
-) ENGINE = InnoDB;
-
--- Definición de rutas públicas
-INSERT INTO ruta_permit (patron) VALUES 
-('/'),
-('/index'),
-('/inicio_Sesion'),
-('/registro/**'),
-('/disponibilidad/**'),
-('/contacto/**'),
-('/errores/**'),
-('/js/**'),
-('/css/**'),
-('/images/**'),
-('/webjars/**');
-
--- Constantes de configuración (incluye elementos de seguridad)
-CREATE TABLE constante (
-    id_constante INT AUTO_INCREMENT NOT NULL,
-    atributo VARCHAR(25) NOT NULL,
-    valor VARCHAR(150) NOT NULL,
-    PRIMARY KEY (id_constante)
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
-
--- Valores de configuración para seguridad y acceso
-INSERT INTO constante (atributo, valor) VALUES 
-('dominio', 'localhost'),
-('certificado', 'c:/cert'),
-('correo.soporte', 'soporte@hotel.com'),
-('correo.reservas', 'reservas@hotel.com'),
-('session.timeout', '30'),
-('max.intentos.login', '3'),
-('token.expiracion', '86400');
+/* Inserción de usuarios (con contraseñas cifradas) */
+INSERT INTO usuario (id_usuario, username, password, nombre, apellidos, correo, telefono, activo) VALUES 
+(1, 'juan', '$2a$10$P1.w58XvnaYQUQgZUCk4aO/RTRl8EValluCqB3S2VMLTbRt.tlre.', 'Juan', 'Castro Mora', 'jcastro@gmail.com', '4556-8978', true),
+(2, 'rebeca', '$2a$10$GkEj.ZzmQa/aEfDmtLIh3udIH5fMphx/35d0EYeqZL5uzgCJ0lQRi', 'Rebeca', 'Contreras Mora', 'acontreras@gmail.com', '5456-8789', true),
+(3, 'pedro', '$2a$10$koGR7eS22Pv5KdaVJKDcge04ZB53iMiw76.UjHPY.XyVYlYqXnPbO', 'Pedro', 'Mena Loria', 'lmena@gmail.com', '7898-8936', true);
