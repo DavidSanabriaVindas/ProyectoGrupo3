@@ -70,18 +70,18 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/", "/index", "/errores/**",
                         "/js/**", "/webjars/**", "/css/**", "/images/**",
                         "/Habitaciones", "/Servicios", "/Nosotros", "/Actividades",
-                        "/ActividadAcuatica", "/Actividades_AireLibre", "/Actividad_Entretenimientos"
+                        "/ActividadAcuatica", "/Actividades_AireLibre", "/Actividad_Entretenimientos",
+                        "/reservas/nuevo", "/reservas/guardar" // Agregado acceso público a crear reservas
                 ).permitAll()
-                // Solo ADMIN puede crear, editar o eliminar
+                // Solo ADMIN puede editar o eliminar
                 .requestMatchers(
-                        "/reservas/nuevo", "/reservas/guardar",
                         "/reservas/modificar/**", "/reservas/eliminar/**",
                         "/usuario/nuevo", "/usuario/guardar",
                         "/usuario/modificar/**", "/usuario/eliminar/**"
                 ).hasRole("ADMIN")
                 // ADMIN y USER pueden ver los listados
                 .requestMatchers(
-                        "/reservas/listado",
+                        
                         "/usuario/listado"
                 ).hasAnyRole("ADMIN", "USER")
                 // Cualquier otra solicitud requiere autenticación
