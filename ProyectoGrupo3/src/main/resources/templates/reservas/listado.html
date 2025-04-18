@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,9 +24,18 @@
                 <a th:href="@{/Nosotros}">Nosotros</a>
                 <a th:href="@{/Actividades}">Actividades</a>
                 <a th:href="@{/Servicios}">Servicios</a>
-                <a href="inicio_Sesion.html"> Iniciar Sesion
+                
+                <!-- Mostrar opción de inicio de sesión solo si no está autenticado -->
+                <a th:href="@{/login}" sec:authorize="!isAuthenticated()"> 
+                    Iniciar Sesion
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="48" height="48" stroke-width="1"> <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path> <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path> <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path> </svg>
                 </a>
+                
+                <!-- Mostrar nombre de usuario y opción de cerrar sesión si está autenticado -->
+                <div sec:authorize="isAuthenticated()" class="d-flex align-items-center">
+                    <span class="me-2 text-white">Bienvenido, <span sec:authentication="name"></span></span>
+                    <a th:href="@{/logout}" class="btn btn-sm btn-light">Cerrar Sesión</a>
+                </div>
             </nav>
         </div>
     </header>
@@ -37,11 +47,13 @@
 
     <div class="contenedor contenido">
         <div class="staff">
-            <div class="text-end mb-3">
+            <!-- Botón para nueva reserva solo visible para administradores -->
+            <div class="text-end mb-3" sec:authorize="hasRole('ROLE_ADMIN')">
                 <a class="btn btn-primary" th:href="@{/reservas/nuevo}">Nueva Reserva</a>
             </div>
             
-            <div class="container mt-4">
+            <!-- Filtros de reservas solo visibles para administradores -->
+            <div class="container mt-4" sec:authorize="hasRole('ROLE_ADMIN')">
             <h2>Filtros de Reservas</h2>
             <form th:action="@{/reservas/queryPorId}" method="get" class="row g-3">
                 <div class="col-md-3">
@@ -71,9 +83,10 @@
                             <th scope="col">Cédula</th>
                             <th scope="col">Teléfono</th>
                             <th scope="col">Correo</th>
-                               <th scope="col">Tipo Habitacion</th>
+                            <th scope="col">Tipo Habitacion</th>
                             <th scope="col">Estado</th>
-                            <th scope="col">Acciones</th>
+                            <!-- Columna de acciones solo visible para administradores -->
+                            <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,7 +102,8 @@
                                 <span th:if="${reservas.activo}" class="badge bg-success">Activo</span>
                                 <span th:unless="${reservas.activo}" class="badge bg-secondary">Inactivo</span>
                             </td>
-                            <td>
+                            <!-- Acciones solo visibles para administradores -->
+                            <td sec:authorize="hasRole('ROLE_ADMIN')">
                                 <a class="btn btn-warning btn-sm" th:href="@{/reservas/modificar/} + ${reservas.id}">Modificar</a>
                                 <a class="btn btn-danger btn-sm" th:href="@{/reservas/eliminar/} + ${reservas.id}"
                                     onclick="return confirm('¿Está seguro que desea eliminar esta reserva?')">Eliminar</a>
@@ -99,31 +113,34 @@
                 </table>
                 <div class="text-center mt-3">
                     <p>Total de reservas: <span th:text="${totalReservas}"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
     
-    
-            <footer class="footer">
-                <div class="footer-left">
-                    <p>En Blue Orchid nos dedicamos a brindar una experiencia cómoda y acogedora para nuestros huéspedes <br> Nuestro compromiso es ofrecer un servicio de calidad con habitaciones modernas y una estancia inolvidable <br> Ya sea por negocios o por placer, haremos todo para hacer de tu visita una experiencia única.</p>
-                </div>
-                <div class="footer-center">
-                    <div class="address">
-                        <p>Dirección: Calle Loria, Alajuela</p>
-                    </div>
-                    <div class="policies">
-                        <p>Política de privacidad|Términos y condiciones</p>
-                    </div>
-                </div>
-                <div class="footer-right">
-                    <div class="contact">
-                        <p>Correo: BlueOrchid@gmail.com</p>
-                    </div>
-                    <div class="contact phone">
-                        <p>Teléfono: 2436-0363</p>
-                    </div>
-                </div>
-                <div class="copyright">
-                    © Blue Orchid | Todos los derechos reservados
-                </div>
-            </footer>
-    </body>
+    <footer class="footer">
+        <div class="footer-left">
+            <p>En Blue Orchid nos dedicamos a brindar una experiencia cómoda y acogedora para nuestros huéspedes <br> Nuestro compromiso es ofrecer un servicio de calidad con habitaciones modernas y una estancia inolvidable <br> Ya sea por negocios o por placer, haremos todo para hacer de tu visita una experiencia única.</p>
+        </div>
+        <div class="footer-center">
+            <div class="address">
+                <p>Dirección: Calle Loria, Alajuela</p>
+            </div>
+            <div class="policies">
+                <p>Política de privacidad|Términos y condiciones</p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <div class="contact">
+                <p>Correo: BlueOrchid@gmail.com</p>
+            </div>
+            <div class="contact phone">
+                <p>Teléfono: 2436-0363</p>
+            </div>
+        </div>
+        <div class="copyright">
+            © Blue Orchid | Todos los derechos reservados
+        </div>
+    </footer>
+</body>
 </html>
