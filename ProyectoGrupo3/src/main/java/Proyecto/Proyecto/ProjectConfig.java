@@ -68,7 +68,7 @@ public class ProjectConfig implements WebMvcConfigurer {
                 // Rutas públicas
                 .requestMatchers(
                         "/", "/index", "/errores/**",
-                        "/js/**", "/webjars/**", "/css/**", "/images/**",
+                        "/js/**", "/webjars/**", "/css/**", "/img/**",
                         "/Habitaciones", "/Servicios", "/Nosotros", "/Actividades",
                         "/ActividadAcuatica", "/Actividades_AireLibre", "/Actividad_Entretenimientos",
                         "/reservas/nuevo", "/reservas/guardar" // Agregado acceso público a crear reservas
@@ -88,13 +88,8 @@ public class ProjectConfig implements WebMvcConfigurer {
                 .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
-                .loginPage("/inicio_Sesion").permitAll()
-                .defaultSuccessUrl("/index", true)
-                )
-                .logout((logout) -> logout
-                .logoutSuccessUrl("/index")
-                .permitAll());
-
+                        .loginPage("/inicio_Sesion").permitAll())
+                .logout((logout) -> logout.permitAll());
         return http.build();
     }
 
