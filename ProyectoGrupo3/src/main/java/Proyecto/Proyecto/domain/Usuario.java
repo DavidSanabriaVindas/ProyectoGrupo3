@@ -1,4 +1,4 @@
-/*package Proyecto.Proyecto.domain;
+package Proyecto.Proyecto.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,30 +14,24 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="usuario")
-
-public class Usuario implements Serializable{
+@Table(name = "usuario")
+public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
-    
     @NotEmpty
     private String username;
-    
     @NotEmpty
     private String password;
-    
     private String nombre;
-    private String apellidos;
+    private String apellido;
     private String correo;
     private String telefono;
-    private String rutaImagen;
     private boolean activo;
-    
+
     @OneToMany
-    @JoinColumn(name="id_usuario")
+    @JoinColumn(name = "id_usuario")
     private List<Rol> roles;
 }
-*/

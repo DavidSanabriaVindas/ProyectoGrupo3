@@ -577,3 +577,30 @@ box-shadow: 10px 10px 48px 3px rgba(0,0,0,1);
    display: grid;
   place-items: center;
 }
+
+@media (min-width: 768px) {
+    .tresColumnas{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+    }
+}
+
+
+.Icono1{
+    display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
+
+.icono {
+  background-color: var(--navyBlue);
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  text-align: center;
+  color: var(--blanco);
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}

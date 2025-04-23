@@ -1,4 +1,4 @@
-/*package Proyecto.Proyecto.service.impl;
+package Proyecto.Proyecto.service.impl;
 
 import Proyecto.Proyecto.service.UsuarioDetailsService;
 import Proyecto.Proyecto.dao.UsuarioDao;
@@ -14,9 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service("userDetailsService")
-public class UsuarioDetailsServiceImpl implements UsuarioDetailsService, UserDetailsService{
-    
-     @Autowired
+public class UsuarioDetailsServiceImpl implements UsuarioDetailsService, UserDetailsService {
+    @Autowired
     private UsuarioDao usuarioDao;
     @Autowired
     private HttpSession session;
@@ -30,15 +29,13 @@ public class UsuarioDetailsServiceImpl implements UsuarioDetailsService, UserDet
         if (usuario == null) {
             throw new UsernameNotFoundException(username);
         }
-        session.removeAttribute("usuarioImagen");
-        session.setAttribute("usuarioImagen", usuario.getRutaImagen());
+        
         //Si está acá es porque existe el usuario... sacamos los roles que tiene
         var roles = new ArrayList<GrantedAuthority>();
         for (Rol rol : usuario.getRoles()) {    
-        roles.add(new SimpleGrantedAuthority("ROLE_" + rol.getNombre()));
+            roles.add(new SimpleGrantedAuthority("ROLE_" + rol.getNombre()));
         }
         //Se devuelve User (clase de UserDetails)
         return new User(username, usuario.getPassword(), roles);
     }
-    }
-*/
+}

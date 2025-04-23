@@ -10,14 +10,23 @@
 </head>
 <body>
         <header th:replace="~{layout/plantilla :: header}"></header>
-   
                 <div class="card mx-auto" style="max-width: 600px;">
                     <div class="card-header bg-primary text-white">
-                        <h3 th:text="${reservas.id != null ? 'Editar Reserva Estándar' : 'Nueva Reserva'}"></h3>
+                        <h3 th:text="${usuario.idUsuario != null ? 'Editar Usuario' : 'Nuevo usuario'}"></h3>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/reservas/guardar}" method="post" th:object="${reservas}">
-                            <input type="hidden" name="id" th:field="*{id}">
+                        <form th:action="@{/usuario/guardar}" method="post" th:object="${usuario}">
+                            <input type="hidden" name="idUsuario" th:field="*{idUsuario}">
+                            
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" th:field="*{username}" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="text" class="form-control" id="password" name="password" th:field="*{password}" required>
+                            </div>
                             
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
@@ -28,46 +37,29 @@
                                 <label for="apellido" class="form-label">Apellido</label>
                                 <input type="text" class="form-control" id="apellido" name="apellido" th:field="*{apellido}" required>
                             </div>
-                            
-                            <div class="mb-3">
-                                <label for="cedula" class="form-label">Cédula</label>
-                                <input type="number" class="form-control" id="cedula" name="cedula" th:field="*{cedula}" required>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="telefono" class="form-label">Teléfono</label>
-                                <input type="number" class="form-control" id="telefono" name="telefono" th:field="*{telefono}" required>
-                            </div>
-                            
+
                             <div class="mb-3">
                                 <label for="correo" class="form-label">Correo</label>
                                 <input type="email" class="form-control" id="correo" name="correo" th:field="*{correo}" required>
                             </div>
                             
                             <div class="mb-3">
-                                <label for="tipoHabitacion" class="form-label">Tipo de Habitación</label>
-                                <select class="form-select" id="tipoHabitacion" name="tipoHabitacion" th:field="*{tipoHabitacion}" required>
-                                    <option value="">Seleccione un tipo de habitación</option>
-                                    <option value="Estandar">Habitacion Estandar</option>
-                                    <option value="Premium">Habitacion Premium</option>
-                                    <option value="Suite"> Habitacion Suite</option>
-                                </select>
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input type="number" class="form-control" id="telefono" name="telefono" th:field="*{telefono}" required>
                             </div>
-                            
+                                                       
                             <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="activo" name="activo" th:field="*{activo}">
                                 <label class="form-check-label" for="activo">Activo</label>
                             </div>
                             
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <a class="btn btn-secondary me-md-2" th:href="@{/reservas/listado}">Cancelar</a>
+                                <a class="btn btn-secondary me-md-2" th:href="@{/usuario/listado}">Cancelar</a>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
                         </form>
                     </div>
                 </div>
-        
-    <footer th:replace="~{layout/plantilla :: footer}"></footer>
-    
+   <footer th:replace="~{layout/plantilla :: footer}"></footer>
 </body>
 </html>

@@ -10,30 +10,8 @@
     <title>Inicio de Sesion</title>
 </head>
 <body>
-    <header>
-        <div class="Blue">
-            <div class="Orchid">
-                <h1>Blue Orchid</h1>
-            </div>
-        </div>
-        <br>
-        <div class="nav-fondo">
-            <nav class="Navegacion-Principal contenedor">
-                <a th:href="@{/}">Inicio</a>
-                <a th:href="@{/Habitaciones}">Reservas</a>
-                <a th:href="@{/Nosotros}">Nosotros</a>
-                <a th:href="@{/Actividades}">Actividades</a>
-                <a th:href="@{/Servicios}">Servicios</a>
-                <a th:href="@{/inicio_Sesion}">Iniciar Sesion
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="48" height="48" stroke-width="1">
-                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                        <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-                        <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
-                    </svg>
-                </a>
-            </nav>
-        </div>
-    </header>
+    <header th:replace="~{layout/plantilla :: header}"></header>
+    
     <br>
     <div class="h2">
         <h2>Inicia Sesion</h2>
@@ -57,32 +35,7 @@
     </div>  
     
     <br><br><br><br><br><br>
-    <footer class="footer">
-        <div class="footer-left">
-            <p>En Blue Orchid nos dedicamos a brindar una experiencia cómoda y acogedora para nuestros huéspedes <br> Nuestro compromiso es ofrecer un servicio de calidad con habitaciones modernas y una estancia inolvidable <br> Ya sea por negocios o por placer, haremos todo para hacer de tu visita una experiencia única.</p>
-        </div>
-        <div class="footer-center">
-            <div class="address">
-                <i class="fas fa-map-marker-alt"></i>
-                <p>Dirección: Calle Loria, Alajuela</p>
-            </div>
-            <div class="policies">
-                <p>Política de privacidad|Términos y condiciones</p>
-            </div>
-        </div>
-        <div class="footer-right">
-            <div class="contact">
-                <i class="fas fa-envelope"></i>
-                <p>Correo: BlueOrchid@gmail.com</p>
-            </div>
-            <div class="contact phone">
-                <i class="fas fa-phone"></i>
-                <p>Teléfono: 2436-0363</p>
-            </div>
-        </div>
-        <div class="copyright">
-            © Blue Orchid | Todos los derechos reservados
-        </div>
-    </footer>
+    
+    <footer th:replace="~{layout/plantilla :: footer}"></footer>
 </body>
 </html>

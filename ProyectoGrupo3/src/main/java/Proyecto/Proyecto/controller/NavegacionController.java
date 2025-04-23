@@ -52,9 +52,20 @@ public class NavegacionController {
         return "Actividad_Entretenimientos";
     }
 
-@GetMapping("/inicio_Sesion") 
-public String mostrarInicioSesion() {
-    return "inicio_Sesion";  
-
-}
+    @GetMapping("/inicio_Sesion")
+    public String mostrarInicioSesion() {
+        return "inicio_Sesion";
+    }
+    
+    @GetMapping("/Usuarios")
+    public String usuarios() {
+        return "Usuarios";
+    }
+  
+    
+@GetMapping("/Servicios2")
+    public String mostrarServicios2() {
+        return "Servicios2"; 
+    }
+    
 }
