@@ -21,6 +21,7 @@
                 <a th:href="@{/Nosotros}">Nosotros</a>
                 <a th:href="@{/Actividades}">Actividades</a>
                 <a th:href="@{/Servicios}">Servicios</a>
+                <a th:href="@{/usuario/listado}" sec:authorize="hasRole('ROLE_ADMIN')">Usuarios</a>
                 
                 <!-- Mostrar opción de inicio de sesión solo si no está autenticado -->
                 <a th:href="@{/inicio_Sesion}" sec:authorize="!isAuthenticated()"> 

@@ -26,7 +26,7 @@ public class Usuario implements Serializable {
     @NotEmpty
     private String password;
     private String nombre;
-    private String apellidos;
+    private String apellido;
     private String correo;
     private String telefono;
     private boolean activo;
