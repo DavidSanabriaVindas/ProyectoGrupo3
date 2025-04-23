@@ -31,7 +31,7 @@
                 
                 <!-- Mostrar nombre de usuario y opción de cerrar sesión si está autenticado -->
                <div sec:authorize="isAuthenticated()" class="d-flex align-items-center">
-    <span class="me-2 text-white">Bienvenido, <span sec:authentication="name"></span></span>
+    
     <form th:action="@{/logout}" method="post" style="margin: 0; padding: 0;">
         <button type="submit" style="background-color: transparent; color: var(--blanco); border: none; font-size: 2rem; font-weight: bold; padding: 10px; cursor: pointer;" onmouseover="this.style.backgroundColor='var(--navyBlue)'" onmouseout="this.style.backgroundColor='transparent'">Cerrar Sesión</button>
     </form>
