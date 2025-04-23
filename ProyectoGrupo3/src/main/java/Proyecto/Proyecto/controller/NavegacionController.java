@@ -61,5 +61,12 @@ public class NavegacionController {
     public String usuarios() {
         return "Usuarios";
     }
+  
+    
+@GetMapping("/Servicios2")
+    public String mostrarServicios2() {
+        // Lógica para preparar los datos que se mostrarán en la página Servicios2
+        return "Servicios2"; // Nombre de la plantilla (archivo Servicios2.html)
+    }
     
 }
