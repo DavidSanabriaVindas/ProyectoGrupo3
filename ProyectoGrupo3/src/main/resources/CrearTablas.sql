@@ -16,7 +16,7 @@ CREATE TABLE reservas (
     telefono VARCHAR(20),
     correo VARCHAR(100),
     tipo_habitacion varchar(100) NOT NULL,
-    activo boolean
+    activo boolean default true
 );
 
 -- Inserción de Datos de Ejemplo (con 'activo' establecido)
@@ -39,7 +39,7 @@ CREATE TABLE usuario (
   apellido VARCHAR(30) NOT NULL,
   correo VARCHAR(75) NULL,
   telefono VARCHAR(15) NULL,
-  activo boolean,
+  activo boolean default true,
   PRIMARY KEY (id_usuario))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
@@ -71,5 +71,3 @@ INSERT INTO rol (id_rol, nombre, id_usuario) VALUES
 INSERT INTO usuario (id_usuario, username, password, nombre, apellido, correo, telefono, activo) VALUES 
 (1, 'juan', '$2a$10$P1.w58XvnaYQUQgZUCk4aO/RTRl8EValluCqB3S2VMLTbRt.tlre.', 'Juan', 'Castro Mora', 'jcastro@gmail.com', '4556-8978', true),
 (2, 'rebeca', '$2a$10$GkEj.ZzmQa/aEfDmtLIh3udIH5fMphx/35d0EYeqZL5uzgCJ0lQRi', 'Rebeca', 'Contreras Mora', 'acontreras@gmail.com', '5456-8789', true);
-
-SELECT*FROM usuario
