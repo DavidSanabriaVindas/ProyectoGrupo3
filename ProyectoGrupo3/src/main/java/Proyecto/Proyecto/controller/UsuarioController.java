@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.GrantedAuthority;
 
 @Controller
 @RequestMapping("/usuario")
@@ -36,11 +39,21 @@ public class UsuarioController {
         return "/usuario/modifica";
     }
 
-    @PostMapping("/guardar")
-    public String usuarioGuardar(Usuario usuario){
-        usuarioService.save(usuario,true);
-        return "redirect:/usuario/listado";
-    }
+@PostMapping("/guardar")
+public String usuarioGuardar(Usuario usuario) {
+    usuarioService.save(usuario, true); // Guarda con rol USER por defecto
+
+    // Obtener el usuario que está autenticado actualmente
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+    // Buscar si tiene el rol ADMIN
+    boolean esAdmin = auth.getAuthorities().stream()
+            .map(GrantedAuthority::getAuthority)
+            .anyMatch(rol -> rol.equals("ROLE_ADMIN"));
+
+    // Redirigir según el rol actual del usuario autenticado
+    return esAdmin ? "redirect:/usuario/listado" : "redirect:/inicio_Sesion";
+}
 
     @GetMapping("/eliminar/{idUsuario}")
     public String usuarioEliminar(Usuario usuario) {

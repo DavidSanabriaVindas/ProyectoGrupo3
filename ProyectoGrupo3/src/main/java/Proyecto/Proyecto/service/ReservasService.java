@@ -20,4 +20,6 @@ public interface ReservasService {
     
     // Metodo para la consulta de reserva por id 
     public List<Reservas> findByIdBetweenOrderByNombre(Long idInicio, Long idFin);
+    
+    public List<Reservas> findByIdIs(Long idIs);
 }

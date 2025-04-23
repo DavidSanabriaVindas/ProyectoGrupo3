@@ -11,4 +11,6 @@ public interface ReservasDao extends JpaRepository <Reservas, Long>{
     // Metodo para la consulta por id 
     public List<Reservas> findByIdBetweenOrderByNombre(Long idInicio, Long idFin);
 
+    public List<Reservas> findByIdIs(Long idIs);
+    
 }

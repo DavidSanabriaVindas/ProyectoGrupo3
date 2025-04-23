@@ -58,6 +58,7 @@ public class ProjectConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/inicio_Sesion").setViewName("inicio_Sesion");
+        registry.addViewController("/usuario/modifica").setViewName("/usuario/modifica");
         registry.addViewController("/registro/nuevo").setViewName("/registro/nuevo");
     }
 
@@ -71,19 +72,14 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/js/**", "/webjars/**", "/css/**", "/img/**",
                         "/Habitaciones", "/Servicios", "/Nosotros", "/Actividades",
                         "/ActividadAcuatica", "/Actividades_AireLibre", "/Actividad_Entretenimientos",
-                        "/reservas/nuevo", "/reservas/guardar" // Agregado acceso público a crear reservas
+                        "/reservas/nuevo", "/reservas/guardar",   "/usuario/nuevo", "/usuario/guardar"
+                        // Agregado acceso público a crear reservas
                 ).permitAll()
                 // Solo ADMIN puede editar o eliminar
                 .requestMatchers(
-                        "/reservas/modificar/**", "/reservas/eliminar/**",
-                        "/usuario/nuevo", "/usuario/guardar",
-                        "/usuario/modificar/**", "/usuario/eliminar/**"
+                        "/reservas/modificar/**", "/reservas/eliminar/**",  "/usuario/listado",
+                        "/usuario/eliminar/**", "/usuario/modificar/**" 
                 ).hasRole("ADMIN")
-                // ADMIN y USER pueden ver los listados
-                .requestMatchers(
-                        
-                        "/usuario/listado"
-                ).hasAnyRole("ADMIN", "USER")
                 // Cualquier otra solicitud requiere autenticación
                 .anyRequest().authenticated()
                 )

@@ -5,6 +5,7 @@ import Proyecto.Proyecto.service.ReservasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +32,10 @@ public class ReservasController {
     }
 
     @PostMapping("/guardar")
-    public String reservasGuardar(Reservas reservas) {
-        reservasService.save(reservas);
-        return "redirect:/reservas/listado";
+    public String reservasGuardar(Reservas reservas, RedirectAttributes redirectAttributes) {
+    reservasService.save(reservas);
+    redirectAttributes.addFlashAttribute("idReservaGuardada", reservas.getId()); 
+    return "redirect:/reservas/listado"; 
     }
 
     @GetMapping("/eliminar/{id}")
@@ -71,6 +73,13 @@ public class ReservasController {
     
         return "reservas/listado";
     }
+    
+   @GetMapping("/queryPorIdUnico")
+    public String consultaPorIdUnico(@RequestParam(value = "idIs", required = true) Long idIs, Model model) {
+        var reservas = reservasService.findByIdIs(idIs);
+        model.addAttribute("reservas", reservas);
+        model.addAttribute("idIs", idIs); 
+        model.addAttribute("totalReservas", reservas.size()); 
+        return "reservas/listado";
+    }
 }
-
-

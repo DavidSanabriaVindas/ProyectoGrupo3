@@ -48,13 +48,13 @@
                                 <input type="number" class="form-control" id="telefono" name="telefono" th:field="*{telefono}" required>
                             </div>
                                                        
-                            <div class="mb-3 form-check">
+                            <div sec:authorize="hasRole('ROLE_ADMIN')" class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="activo" name="activo" th:field="*{activo}">
                                 <label class="form-check-label" for="activo">Activo</label>
                             </div>
                             
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <a class="btn btn-secondary me-md-2" th:href="@{/usuario/listado}">Cancelar</a>
+                                <a class="btn btn-secondary me-md-2" th:href="@{/index}">Cancelar</a>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
                         </form>

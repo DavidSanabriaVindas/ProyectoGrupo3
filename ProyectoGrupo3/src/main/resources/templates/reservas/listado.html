@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
@@ -11,10 +12,14 @@
 </head>
 <body>
     <header th:replace="~{layout/plantilla :: header}"></header>
-    
+    <div class="container mt-3" th:if="${idReservaGuardada != null}">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                 <strong>¡Reserva registrada con éxito!</strong> El ID de tu reserva es: <span th:text="${idReservaGuardada}"></span>
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                </div>
+            </div>
     <div class="Migajas">
-        <h1>Conoce nuestras habitaciones !!!</h1>
-        <p>Habitación Estándar >>></p>
+        <h1>Realizar reservas</h1>
     </div>
 
     <div class="contenedor contenido">
@@ -27,72 +32,118 @@
             <!-- Mensaje para usuarios regulares -->
             <div class="alert alert-info text-center" sec:authorize="isAuthenticated() && !hasRole('ROLE_ADMIN')">
                 <p>¡Gracias por tu interés en nuestras habitaciones! Utiliza el botón de arriba para crear una nueva reserva.</p>
+                <p>Para ver detalles de una reserva existente, ingresa su ID en el campo de búsqueda.</p>
             </div>
             
-            <!-- El siguiente contenido SOLO es visible para administradores -->
-            <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <div>
                 <!-- Filtros de reservas -->
                 <div class="container mt-4">
                     <h2>Filtros de Reservas</h2>
-                    <form th:action="@{/reservas/queryPorId}" method="get" class="row g-3">
-                        <div class="col-md-3">
-                            <label for="idInicial" class="form-label">ID Inicial</label>
-                            <input type="number" class="form-control" id="idInicial" name="idInicial" 
-                                th:value="${idInicial}" placeholder="ID Inicial">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="idFinal" class="form-label">ID Final</label>
-                            <input type="number" class="form-control" id="idFinal" name="idFinal" 
-                                th:value="${idFinal}" placeholder="ID Final">
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Filtrar</button>
-                            <a th:href="@{/reservas/listado}" class="btn btn-secondary">Limpiar</a>
-                        </div>
-                    </form>
-                </div>
-                
-                <!-- Tabla de reservas solo visible para administradores -->
-                <div class="TablaReservas">
-                    <h3 class="mt-4">Listado de Reservas</h3>
-                    <table class="table table-striped table-bordered table-hover table-responsive">
-                        <thead class="table-dark">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Cédula</th>
-                                <th scope="col">Teléfono</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Tipo Habitacion</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="reservas : ${reservas}">
-                                <td th:text="${reservas.id}"></td>
-                                <td th:text="${reservas.nombre}"></td>
-                                <td th:text="${reservas.apellido}"></td>
-                                <td th:text="${reservas.cedula}"></td>
-                                <td th:text="${reservas.telefono}"></td>
-                                <td th:text="${reservas.correo}"></td>
-                                <td th:text="${reservas.tipoHabitacion}"></td>
-                                <td>
-                                    <span th:if="${reservas.activo}" class="badge bg-success">Activo</span>
-                                    <span th:unless="${reservas.activo}" class="badge bg-secondary">Inactivo</span>
-                                </td>
-                                <td>
-                                    <a class="btn btn-warning btn-sm" th:href="@{/reservas/modificar/} + ${reservas.id}">Modificar</a>
-                                    <a class="btn btn-danger btn-sm" th:href="@{/reservas/eliminar/} + ${reservas.id}"
-                                        onclick="return confirm('¿Está seguro que desea eliminar esta reserva?')">Eliminar</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center mt-3">
-                        <p>Total de reservas: <span th:text="${totalReservas}"></span></p>
+                    <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                        <form th:action="@{/reservas/queryPorId}" method="get" class="row g-3">
+                            <div class="col-md-3">
+                                <label for="idInicial" class="form-label">ID Inicial</label>
+                                <input type="number" class="form-control" id="idInicial" name="idInicial" 
+                                    th:value="${idInicial}" placeholder="ID Inicial">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="idFinal" class="form-label">ID Final</label>
+                                <input type="number" class="form-control" id="idFinal" name="idFinal" 
+                                    th:value="${idFinal}" placeholder="ID Final">
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                                <a th:href="@{/reservas/listado}" class="btn btn-secondary">Limpiar</a>
+                            </div>
+                        </form>
                     </div>
+                    
+                    <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+                        <form th:action="@{/reservas/queryPorIdUnico}" method="get" class="row g-3">
+                            <div class="col-md-4">
+                                <label for="idIs" class="form-label">ID de la reserva</label>
+                                <input type="number" class="form-control" id="idIs" name="idIs" 
+                                    th:value="${idIs}" placeholder="ID a buscar" required>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                                <a th:href="@{/reservas/listado}" class="btn btn-secondary">Limpiar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tabla de reservas -->
+            <div class="TablaReservas">
+                <h3 class="mt-4">Listado de Reservas</h3>
+                <table class="table table-striped table-bordered table-hover table-responsive">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Cédula</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Tipo Habitacion</th>
+                            <th scope="col">Estado</th>
+                            <th th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Para ADMIN: muestra todas las reservas -->
+                        <tr th:each="reservas : ${reservas}" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                            <td th:text="${reservas.id}"></td>
+                            <td th:text="${reservas.nombre}"></td>
+                            <td th:text="${reservas.apellido}"></td>
+                            <td th:text="${reservas.cedula}"></td>
+                            <td th:text="${reservas.telefono}"></td>
+                            <td th:text="${reservas.correo}"></td>
+                            <td th:text="${reservas.tipoHabitacion}"></td>
+                            <td>
+                                <span th:if="${reservas.activo}" class="badge bg-success">Activo</span>
+                                <span th:unless="${reservas.activo}" class="badge bg-secondary">Inactivo</span>
+                            </td>
+                            <td>
+                                <a class="btn btn-warning btn-sm" th:href="@{/reservas/modificar/} + ${reservas.id}">Modificar</a>
+                                <a class="btn btn-danger btn-sm" th:href="@{/reservas/eliminar/} + ${reservas.id}"
+                                   onclick="return confirm('¿Está seguro que desea eliminar esta reserva?')">Eliminar</a>
+                            </td>
+                        </tr>
+                        
+                        <!-- Para USER: solo muestra el registro buscado por ID -->
+                        <tr th:each="reservas : ${reservas}" 
+                            th:if="${#authorization.expression('hasRole(''ROLE_USER'')')} and ${idIs != null and reservas.id == idIs}">
+                            <td th:text="${reservas.id}"></td>
+                            <td th:text="${reservas.nombre}"></td>
+                            <td th:text="${reservas.apellido}"></td>
+                            <td th:text="${reservas.cedula}"></td>
+                            <td th:text="${reservas.telefono}"></td>
+                            <td th:text="${reservas.correo}"></td>
+                            <td th:text="${reservas.tipoHabitacion}"></td>
+                            <td>
+                                <span th:if="${reservas.activo}" class="badge bg-success">Activo</span>
+                                <span th:unless="${reservas.activo}" class="badge bg-secondary">Inactivo</span>
+                            </td>
+                        </tr>
+                        
+                        <!-- Mensaje cuando no hay reservas o no se encontraron resultados -->
+                        <tr th:if="${(#lists.isEmpty(reservas)) or ((#authorization.expression('hasRole(''ROLE_USER'')')) and (idInicial == null))}">
+                            <td colspan="9" class="text-center">No se encontraron reservas</td>
+                        </tr>
+                        
+                        <!-- Mensaje cuando no se encontró la reserva buscada por el usuario -->
+                        <tr th:if="${#authorization.expression('hasRole(''ROLE_USER'')')} and ${idIs != null} and ${#lists.size(reservas) > 0} and ${!#lists.contains(reservas.![id], idIs)}">
+                            <td colspan="9" class="text-center text-danger">No se encontró ninguna reserva con el ID: <span th:text="${idIs}"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center mt-3" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                    <p>Total de reservas: <span th:text="${totalReservas}"></span></p>
+                </div>
+                <div class="text-center mt-3" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')} and ${idIs != null} and ${#lists.contains(reservas.![id], idIs)}">
+                    <p>Se encontró 1 reserva</p>
                 </div>
             </div>
         </div>

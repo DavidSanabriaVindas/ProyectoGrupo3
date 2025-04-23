@@ -68,4 +68,9 @@ public class NavegacionController {
         return "Servicios2"; 
     }
     
+    @GetMapping("/cancelar_sesion")
+public String cancelarSesion() {
+    return "redirect:/index";
+}
+
 }

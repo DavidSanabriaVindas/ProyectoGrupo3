@@ -58,17 +58,27 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioDao.existsByUsernameOrCorreo(username, correo);
     }
 
+    @Autowired
+private org.springframework.security.crypto.password.PasswordEncoder passwordEncoder;
+    
     @Override
-    @Transactional
-    public void save(Usuario usuario, boolean crearRolUser) {
-        usuario=usuarioDao.save(usuario);
-        if (crearRolUser) {  //Si se está creando el usuario, se crea el rol por defecto "USER"
-            Rol rol = new Rol();
-            rol.setNombre("ROLE_USER");
-            rol.setIdUsuario(usuario.getIdUsuario());
-            rolDao.save(rol);
-        }
+@Transactional
+public void save(Usuario usuario, boolean crearRolUser) {
+    // Verificamos si es un usuario nuevo o si la contraseña no está ya encriptada
+    if (usuario.getIdUsuario() == null || !usuario.getPassword().startsWith("$2a$")) {
+        // Encriptar la contraseña con BCrypt
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
     }
+
+    usuario = usuarioDao.save(usuario);
+
+    if (crearRolUser) {
+        Rol rol = new Rol();
+        rol.setNombre("USER");
+        rol.setIdUsuario(usuario.getIdUsuario());
+        rolDao.save(rol);
+    }
+}
 
     @Override
     @Transactional

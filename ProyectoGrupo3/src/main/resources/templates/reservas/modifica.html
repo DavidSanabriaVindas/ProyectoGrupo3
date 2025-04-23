@@ -10,7 +10,6 @@
 </head>
 <body>
         <header th:replace="~{layout/plantilla :: header}"></header>
-   
                 <div class="card mx-auto" style="max-width: 600px;">
                     <div class="card-header bg-primary text-white">
                         <h3 th:text="${reservas.id != null ? 'Editar Reserva Estándar' : 'Nueva Reserva'}"></h3>
@@ -54,7 +53,7 @@
                                 </select>
                             </div>
                             
-                            <div class="mb-3 form-check">
+                            <div sec:authorize="hasRole('ROLE_ADMIN')" class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="activo" name="activo" th:field="*{activo}">
                                 <label class="form-check-label" for="activo">Activo</label>
                             </div>
